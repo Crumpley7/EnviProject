@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name">NewEnvi</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
+        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
+        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
+        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
+        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
+        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
+        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
+        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
+        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
+        bibendum, vel congue leo egestas.\n\n
+        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
+        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
+        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
+        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
+        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
+        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
+        est.\n\n
+        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
+        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
+        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
+        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
+        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
+        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
+        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
+        convallis.\n\n
+        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
+        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
+        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
+        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
+        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
+        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
+    </string>
+    <string name="Daisy">
+        Plant Name: Daisy
+
+    Scientific Name: Bellis
+
+    Description: Bellis, commonly known as daisies or English daisies, are delightful flowering plants that are native to Europe and Asia. They are characterized by their small, colorful flowers with a central disk surrounded by delicate petals in shades of white, pink, or red. Bellis typically thrive in cool, temperate habitats and are often found in lawns, meadows, or cottage gardens. To care for Bellis, provide them with a location that receives partial to full sun and well-drained soil. Regular watering is important to keep the soil evenly moist, especially during dry spells. Deadheading spent flowers promotes continuous blooming, and trimming back the plants after flowering can help maintain their shape and prevent self-seeding. These low-growing plants are generally not prone to serious pest or disease issues, making them relatively low-maintenance. With their charming and timeless beauty, Bellis bring a touch of nostalgia and grace to any garden.
+    </string>
+    <string name="Dandelion">
+        Plant Name: Dandelion
+
+Scientific Name: Taraxacum
+
+Description: Taraxum is the scientific name for the common dandelion, a widespread perennial flowering plant found in various habitats worldwide. Dandelions are known for their distinctive yellow flowers that transform into fluffy white seed heads. They are highly adaptable and can thrive in diverse environments, including lawns, meadows, fields, and even cracks in pavement. Caring for dandelions is relatively simple as they are hardy and resilient. They prefer full sunlight but can tolerate partial shade. Dandelions are adaptable to different soil types but prefer well-drained soil. Regular watering to keep the soil moist is necessary, but overwatering should be avoided. Deadheading the flowers before they turn into seed heads helps prevent their spread. Regular mowing can control their growth and maintain a neat appearance. While some consider dandelions as weeds, their yellow blooms and edible leaves make them appreciated by others in the realm of wildflowers and herbal gardens.
+    </string>
+    <string name="Rose">
+        Plant Name: Rose
+
+Scientific Name: Rosa
+
+Description: Roses, or Rosa, are iconic flowering plants renowned for their exquisite beauty and intoxicating fragrance. They are native to various regions around the world and are widely cultivated in gardens and landscapes. Roses can thrive in different habitats, including gardens, borders, and containers. To care for roses, it is crucial to provide them with a location that receives at least six hours of direct sunlight per day. They prefer well-drained soil that is rich in organic matter. Regular watering is essential, particularly during dry periods, but it is important to avoid overwatering as roses are susceptible to fungal diseases. Mulching around the base of the plants helps retain moisture, regulate soil temperature, and suppress weed growth. Pruning roses in late winter or early spring promotes healthy growth, improves airflow, and encourages abundant blooms. Fertilizing with a balanced rose fertilizer in early spring and again in midsummer provides the necessary nutrients for vigorous growth and prolific flowering. Regularly inspecting roses for pests, such as aphids or blackspot, and promptly treating them helps maintain the plants\' health and beauty. With their stunning blossoms and timeless appeal, roses are a classic addition to any garden.
+    </string>
+    <string name="Sunflower">
+        Plant Name: Sunflower
+
+Scientific Name: Helianthus
+
+Description: Helianthus, commonly known as sunflowers, are vibrant and iconic flowering plants native to North and Central America. They are characterized by their large, showy yellow or orange blooms with dark centers, which follow the movement of the sun throughout the day. Sunflowers thrive in habitats that receive full sun and have well-drained soil. They are often found in fields, meadows, and garden borders. To care for sunflowers, provide them with a location that receives at least six to eight hours of direct sunlight per day. They prefer fertile soil, but they are adaptable and can grow in various soil types. Regular watering, particularly during dry spells or when they are newly planted, is important for establishing strong root systems. Stake taller varieties to support their heavy flower heads. Deadheading spent flowers and removing any damaged or diseased foliage helps maintain the plant\'s appearance. Sunflowers are relatively low-maintenance and do not require frequent fertilization. With their striking beauty and ability to brighten any landscape, sunflowers are a delightful addition to gardens and bring joy to onlookers.
+    </string>
+    <string name="Tulip">
+        Plant Name: Tulip
+
+Scientific Name: Tulipa
+
+Description: Tulipa, commonly known as tulips, are enchanting flowering plants native to regions in Europe, Asia, and North Africa. They are known for their vibrant and diverse blooms, ranging from single-colored to multicolored varieties in shades of red, yellow, pink, purple, and white. Tulips are versatile and can be grown in a variety of habitats, including gardens, borders, and containers. To care for tulips, it is important to provide them with a location that receives full sun to partial shade. They prefer well-drained soil that is not overly wet. Plant the bulbs in the fall, at a depth that is roughly three times the bulb\'s height. Regular watering is necessary after planting and during dry periods, but they should not be overwatered to avoid bulb rot. Deadheading spent flowers promotes energy conservation and prevents seed production. Once the foliage turns yellow, it can be trimmed back to allow the bulbs to enter their dormant stage. Fertilize tulips with a balanced bulb fertilizer in early spring to support healthy growth and future blooms. With their captivating beauty and vibrant colors, tulips add a touch of elegance and charm to any garden or floral display.
+    </string>
+
+</resources>
