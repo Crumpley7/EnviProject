@@ -1,6 +1,7 @@
 package com.example.newenvi;
 
 import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.Manifest;
@@ -14,11 +15,14 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.view.WindowCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -28,9 +32,14 @@ import com.example.newenvi.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
+
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,7 +61,19 @@ public class MainActivity extends AppCompatActivity {
         binding.btnTakePicture.setOnClickListener(view -> {
         checkCameraPermissionAndOpenCamera();
                 });
+//        Button myButton = findViewById(R.id.button);
+//        myButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                Fragment firstfragment = new FirstFragment();
+//                transaction.replace(R.id.MainActivity, firstfragment);
+//                transaction.addToBackStack(null);
+//                transaction.commit();
+//            }
+//        });
     }
+
 
 
 private Uri createUri(){
@@ -96,4 +117,5 @@ public void checkCameraPermissionAndOpenCamera(){
             }
         }
     }
+
 }
