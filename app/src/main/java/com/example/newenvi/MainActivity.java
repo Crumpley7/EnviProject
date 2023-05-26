@@ -24,7 +24,9 @@ import androidx.core.view.WindowCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
+import androidx.navigation.NavHost;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -61,17 +63,28 @@ public class MainActivity extends AppCompatActivity {
         binding.btnTakePicture.setOnClickListener(view -> {
         checkCameraPermissionAndOpenCamera();
                 });
-//        Button myButton = findViewById(R.id.button);
-//        myButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                Fragment firstfragment = new FirstFragment();
-//                transaction.replace(R.id.MainActivity, firstfragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
-//            }
-//        });
+
+        /*binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_main);
+                NavController navController = navHostFragment.getNavController();
+                navController.navigate(R.id.action_MainActivity_to_FirstFragment);
+            }
+        });*/
+        Button myButton = findViewById(R.id.button);
+       myButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              myButton.setVisibility(View.GONE);
+              findViewById(R.id.btnTakePicture).setVisibility(View.GONE);
+             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+             Fragment firstFragment = new FirstFragment();
+             transaction.replace(R.id.container, firstFragment);
+             transaction.addToBackStack(null);
+             transaction.commit();
+      }
+   });
     }
 
 

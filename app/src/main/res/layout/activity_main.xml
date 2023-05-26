@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/container"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
@@ -19,9 +20,9 @@
 
     <Button
         android:id="@+id/btnTakePicture"
-        android:layout_width="369dp"
+        android:layout_width="320dp"
         android:layout_height="115dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="Take picture"
@@ -31,8 +32,8 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="280dp"
-        android:layout_height="101dp"
+        android:layout_width="320dp"
+        android:layout_height="115dp"
         android:text="Dictionary"
         app:layout_anchor="@+id/ivUser"
         app:layout_anchorGravity="bottom|center" />
