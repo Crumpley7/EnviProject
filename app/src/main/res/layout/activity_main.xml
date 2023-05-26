@@ -31,10 +31,10 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="163dp"
-        android:layout_height="157dp"
+        android:layout_width="280dp"
+        android:layout_height="101dp"
         android:text="Dictionary"
-        app:layout_anchor="@id/btnTakePicture"
+        app:layout_anchor="@+id/ivUser"
         app:layout_anchorGravity="bottom|center" />
 
 
