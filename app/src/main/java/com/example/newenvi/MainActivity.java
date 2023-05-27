@@ -1,121 +1,148 @@
 package com.example.newenvi;
-
-import android.content.pm.PackageManager;
-import android.content.res.AssetFileDescriptor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.Manifest;
-
-
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.LayoutInflater;
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
-import androidx.core.view.WindowCompat;
+
+import org.tensorflow.lite.DataType;
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
+
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.newenvi.databinding.ActivityMainBinding;
-
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
-
-import java.io.File;
-
-
-
+import com.example.newenvi.ml.ModelV6;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int CAMERA_PERMISSION_CODE = 1;
-    private ActivityMainBinding binding;
-    ActivityResultLauncher<Uri> takePictureLauncher;
-    Uri imageUri;
-
+    Button camera, frag;
+    ImageView imageView;
+    TextView result;
+    int imageSize = 64;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_main);
 
-        imageUri = createUri();
-        registerPictureLauncher();
+        camera = findViewById(R.id.btnTakePicture);
+        frag = findViewById(R.id.button);
+        result = findViewById(R.id.result);
+        imageView = findViewById(R.id.imageView);
 
-        binding.btnTakePicture.setOnClickListener(view -> {
-        checkCameraPermissionAndOpenCamera();
-                });
-//        Button myButton = findViewById(R.id.button);
-//        myButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                Fragment firstfragment = new FirstFragment();
-//                transaction.replace(R.id.MainActivity, firstfragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
-//            }
-//        });
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(cameraIntent, 3);
+                } else {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
+                }
+            }
+        });
+        frag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                frag.setVisibility(View.GONE);
+                camera.setVisibility(View.GONE);
+                imageView.setVisibility(View.GONE);
+                result.setVisibility(View.GONE);
+                findViewById(R.id.classified).setVisibility(View.GONE);
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Fragment firstFragment = new FirstFragment();
+                transaction.replace(R.id.container, firstFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
     }
 
+    public void classifyImage(Bitmap image){
+        try {
+            ModelV6 model = ModelV6.newInstance(getApplicationContext());
 
+            // Creates inputs for reference.
+            TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, imageSize, imageSize, 3}, DataType.FLOAT32);
+            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3);
+            byteBuffer.order(ByteOrder.nativeOrder());
 
-private Uri createUri(){
-    File imageFile = new File(getApplicationContext().getFilesDir(),"camera_photos.jpg");
-    return FileProvider.getUriForFile(getApplicationContext(), "com.example.newenvi.fileProvider", imageFile);
-}
-private void registerPictureLauncher(){
-        takePictureLauncher = registerForActivityResult(
-                new ActivityResultContracts.TakePicture(),
-                new ActivityResultCallback<Boolean>() {
-                    @Override
-                    public void onActivityResult(Boolean result) {
-                         try {
-                             if(result){
-                                 binding.ivUser.setImageURI(null);
-                                 binding.ivUser.setImageURI(imageUri);
-                             }
-                         }catch (Exception exception) {
-                             exception.getStackTrace();
-                         }
-                    }
+            int[] intValues = new int[imageSize * imageSize];
+            image.getPixels(intValues, 0, image.getWidth(), 0, 0, image.getWidth(), image.getHeight());
+            int pixel = 0;
+            //iterate over each pixel and extract R, G, and B values. Add those values individually to the byte buffer.
+            for(int i = 0; i < imageSize; i ++){
+                for(int j = 0; j < imageSize; j++){
+                    int val = intValues[pixel++]; // RGB
+                    byteBuffer.putFloat(((val >> 16) & 0xFF) * (1.f / 1));
+                    byteBuffer.putFloat(((val >> 8) & 0xFF) * (1.f / 1));
+                    byteBuffer.putFloat((val & 0xFF) * (1.f / 1));
                 }
-        );
-}
-public void checkCameraPermissionAndOpenCamera(){
-        if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE );
-        }else {
-            takePictureLauncher.launch(imageUri);
+            }
+
+            inputFeature0.loadBuffer(byteBuffer);
+
+            // Runs model inference and gets result.
+            ModelV6.Outputs outputs = model.process(inputFeature0);
+            TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
+
+            float[] confidences = outputFeature0.getFloatArray();
+            // find the index of the class with the biggest confidence.
+            int maxPos = 0;
+            float maxConfidence = 0;
+            for (int i = 0; i < confidences.length; i++) {
+                if (confidences[i] > maxConfidence) {
+                    maxConfidence = confidences[i];
+                    maxPos = i;
+                }
+            }
+            String[] classes = {"Astilibe", "Bellflower", "Black-eyed Susan", "Marigold", "California Poppy", "Carnation", "Daisy", "Tickseed", "Daffodil", "Dandelion", "Iris", "Magnolia", "Rose", "Sunflower", "Tulip", "Water lily"};
+            result.setText(classes[maxPos]);
+            // Releases model resources if no longer used.
+            model.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-}
-@Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == CAMERA_PERMISSION_CODE){
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                 takePictureLauncher.launch(imageUri);
-            } else{
-                Toast.makeText(this, "Camera permission denied, please allow permission to take a picture.", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(resultCode == RESULT_OK){
+            if(requestCode == 3){
+                Bitmap image = (Bitmap) data.getExtras().get("data");
+                int dimension = Math.min(image.getWidth(), image.getHeight());
+                image = ThumbnailUtils.extractThumbnail(image, dimension, dimension);
+                imageView.setImageBitmap(image);
+
+                image = Bitmap.createScaledBitmap(image, imageSize, imageSize, false);
+                classifyImage(image);
+            }else{
+                Uri dat = data.getData();
+                Bitmap image = null;
+                try {
+                    image = MediaStore.Images.Media.getBitmap(this.getContentResolver(), dat);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                imageView.setImageBitmap(image);
+
+                image = Bitmap.createScaledBitmap(image, imageSize, imageSize, false);
+                classifyImage(image);
             }
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
-
 }
